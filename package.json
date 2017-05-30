@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node ./src/backEnd/index.js",
     "watch:client": "webpack --watch",
+    "heroku-postbuild": "webpack -p --config webpack.config.js --progress",
     "watch:server": "NODE_ENV=development nodemon -x 'npm start'",
     "build": "webpack"
   },
