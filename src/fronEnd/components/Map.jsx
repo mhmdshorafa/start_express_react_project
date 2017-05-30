@@ -13,7 +13,7 @@ class Map extends Component {
   render() {
     return (
       <div style={{width:'80%', height:'400px', margin:'0 auto', marginTop:'20px'}}>
-        <GoogleMapReact onGoogleApiLoaded={({map, maps}) =>  {
+        <GoogleMapReact bootstrapURLKeys={{key: 'AIzaSyDFeKjIbY0DFXhuE_iRx0rAGTOTUPjcXFs'}} onGoogleApiLoaded={({map, maps}) =>  {
             drop_ins.features.map((data) => {
             const infowindow = new maps.InfoWindow({
                 content: '<div>'+data.properties.Address+'<br />'+data.properties.NAME+'</div>'
