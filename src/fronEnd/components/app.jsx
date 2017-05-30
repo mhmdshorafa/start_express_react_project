@@ -1,6 +1,7 @@
 import React from 'react';
+import Map from './Map.jsx';
 
 const App = () => {
-  return <div>hello arsat </ div>
+  return <div><Map /> </ div>
 }
 module.exports = App;
