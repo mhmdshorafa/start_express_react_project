@@ -9,17 +9,27 @@ import List from './list.jsx';
 class Map extends Component {
   constructor(props) {
     super(props);
-    this.log = this.log.bind(this);
+    this.matchMarker = this.matchMarker.bind(this);
     this.state = {
       map: null,
       maps: null,
-      markers: []
+      markers: [],
+      centerLng:-79.37840775,
+      centerLat:43.66014526
     }
   }
 
-  log(i) {
-    console.log(this.state.markers);
-    this.state.maps.event.trigger(this.state.markers[14], "click");
+  matchMarker(lat, lng) {
+    const matchMarker = this.state.markers.filter((marker) => {
+      return marker.getPosition().lat() == lat;
+    })
+    if (matchMarker.length > 0) {
+      this.setState({
+        centerLng : matchMarker[0].getPosition().lng(),
+        centerLng : matchMarker[0].getPosition().lat()
+      });
+      this.state.maps.event.trigger(matchMarker[0], "click");
+    }
   }
 
   render() {
@@ -36,7 +46,7 @@ class Map extends Component {
               });
               const marker = new maps.Marker({
                 map: map,
-                draggable: true,
+                draggable: false,
                 animation: maps.Animation.DROP,
                 position: {
                   lat: data.geometry.coordinates[1],
@@ -56,11 +66,11 @@ class Map extends Component {
             });
             water.features.map((data) => {
               const infowindow = new maps.InfoWindow({
-                content: '<div>' + data.properties.Address + '<br />' + data.properties.NAME + '</div>'
+                content: '<div>' + data.properties.ASSET_TYPE + '<br />' + data.properties.ASSET_NAME + '</div>'
               });
               const marker = new maps.Marker({
                 map: map,
-                draggable: true,
+                draggable: false,
                 animation: maps.Animation.DROP,
                 position: {
                   lat: data.geometry.coordinates[1],
@@ -68,6 +78,11 @@ class Map extends Component {
                 }
               });
               marker.addListener('click', function() {
+                if (marker.getAnimation() !== null) {
+                  marker.setAnimation(null);
+                } else {
+                  marker.setAnimation(maps.Animation.BOUNCE);
+                }
                 infowindow.open(map, marker);
               });
               marker.set("id", data.properties.OBJECTID);
@@ -79,7 +94,7 @@ class Map extends Component {
               });
               const marker = new maps.Marker({
                 map: map,
-                draggable: true,
+                draggable: false,
                 animation: maps.Animation.DROP,
                 position: {
                   lat: data.geometry.coordinates[1],
@@ -87,6 +102,11 @@ class Map extends Component {
                 }
               });
               marker.addListener('click', function() {
+                if (marker.getAnimation() !== null) {
+                  marker.setAnimation(null);
+                } else {
+                  marker.setAnimation(maps.Animation.BOUNCE);
+                }
                 infowindow.open(map, marker);
               });
               marker.set("id", data.properties.OBJECTID);
@@ -98,7 +118,7 @@ class Map extends Component {
               });
               const marker = new maps.Marker({
                 map: map,
-                draggable: true,
+                draggable: false,
                 animation: maps.Animation.DROP,
                 position: {
                   lat: data.geometry.coordinates[1],
@@ -106,19 +126,23 @@ class Map extends Component {
                 }
               });
               marker.addListener('click', function() {
+                if (marker.getAnimation() !== null) {
+                  marker.setAnimation(null);
+                } else {
+                  marker.setAnimation(maps.Animation.BOUNCE);
+                }
                 infowindow.open(map, marker);
               });
-              marker.set("id", data.properties.OBJECTID);
               drops.push(marker);
             });
             this.setState({map: map, maps: maps, markers: drops});
           }} defaultCenter={{
-            lat: 43.66014526,
-            lng: -79.37840775
+            lat: this.state.centerLat,
+            lng: this.state.centerLng
           }} defaultZoom={16}></GoogleMapReact>
         </div>
 
-        <List drop={drop_ins.features} water={water.features} shelters={shelters.features} youth={youth.features} log={this.log} dropMarkers={drops}/>
+        <List drop={drop_ins.features} water={water.features} shelters={shelters.features} youth={youth.features} matchMarker={this.matchMarker}/>
 
       </div>
     );
