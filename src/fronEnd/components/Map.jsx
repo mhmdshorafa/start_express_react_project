@@ -17,20 +17,26 @@ class Map extends Component {
     }
   }
 
-  matchMarker(id, address, name) {
+  clearAnimation(address,name,cb){
     this.setState({
-      content: '<div>' + address + '<br />' + name + '</div>'
+      content: '<div class="content">' + '<div class="address">'+address+'</div>' + '<hr> <br />' + '<div class="name">'+name+'</div>' + '</div>'
     }, () => {
       (this.state.prevMarker != null)
         ? this.state.prevMarker.setAnimation(null)
         : console.log('ss')
-      const matchMarker = this.state.markers.filter((marker) => {
-        return marker.get('id') == id;
-      })
-      if (matchMarker.length > 0) {
-        this.state.maps.event.trigger(matchMarker[0], "click");
-      }
-    });
+        cb();
+        });
+  }
+
+  matchMarker(id, address, name) {
+      this.clearAnimation(address,name,() => {
+        const matchMarker = this.state.markers.filter((marker) => {
+          return marker.get('id') == id;
+        })
+        if (matchMarker.length > 0) {
+          this.state.maps.event.trigger(matchMarker[0], "click");
+        }
+      });
   }
 
   render() {
@@ -56,7 +62,9 @@ class Map extends Component {
                 });
 
               marker.addListener('click', () => {
-                this.setState({prevMarker: marker});
+                this.clearAnimation(data.properties.Address,data.properties.NAME,()=>{
+                  this.setState({prevMarker: marker});
+                });
                 infowindow.close();
                 infowindow = new maps.InfoWindow({content: this.state.content});
                 infowindow.open(map, marker);
