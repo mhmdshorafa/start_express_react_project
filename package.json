@@ -6,19 +6,20 @@
   "scripts": {
     "start": "node ./src/backEnd/index.js",
     "watch:client": "webpack --watch",
+    "heroku-postbuild": "webpack -p --config webpack.config.js --progress",
     "watch:server": "NODE_ENV=development nodemon -x 'npm start'",
     "build": "webpack"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mhmdshorafa/start_express_react_project.git"
+    "url": "git+https://github.com/mhmdshorafa/start_express_react.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mhmdshorafa/start_express_react_project/issues"
+    "url": "https://github.com/mhmdshorafa/start_express_react/issues"
   },
-  "homepage": "https://github.com/mhmdshorafa/start_express_react_project.git#readme",
+  "homepage": "https://github.com/mhmdshorafa/start_express_react.git#readme",
   "dependencies": {
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
