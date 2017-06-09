@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mhmdshorafa/start_express_react_project.git"
+    "url": "git+https://github.com/mhmdshorafa/start_express_react.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mhmdshorafa/start_express_react_project/issues"
+    "url": "https://github.com/mhmdshorafa/start_express_react/issues"
   },
-  "homepage": "https://github.com/mhmdshorafa/start_express_react_project.git#readme",
+  "homepage": "https://github.com/mhmdshorafa/start_express_react.git#readme",
   "dependencies": {
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
@@ -27,7 +27,6 @@
     "babel-preset-react": "^6.24.1",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
-    "google-map-react": "^0.24.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
