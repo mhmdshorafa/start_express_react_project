@@ -1,5 +1,5 @@
 {
-  "name": "google-map-react",
+  "name": "",
   "version": "1.0.0",
   "description": "test for react map",
   "main": "webpack.config.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mhmdshorafa/google-map-react.git"
+    "url": "git+https://github.com/mhmdshorafa/start_express_react_project.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mhmdshorafa/google-map-react/issues"
+    "url": "https://github.com/mhmdshorafa/start_express_react_project/issues"
   },
-  "homepage": "https://github.com/mhmdshorafa/google-map-react#readme",
+  "homepage": "https://github.com/mhmdshorafa/start_express_react_project.git#readme",
   "dependencies": {
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",

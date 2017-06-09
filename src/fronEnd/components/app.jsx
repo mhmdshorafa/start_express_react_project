@@ -1,6 +1,6 @@
 import React from 'react';
 
 const App = () => {
-  return <div>hello arsat </ div>
+  return <div>hello world</ div>
 }
 module.exports = App;
